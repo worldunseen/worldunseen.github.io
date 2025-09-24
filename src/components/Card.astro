@@ -1,0 +1,61 @@
+---
+interface Props {
+    title: string;
+    width: string;
+    offset: string;
+}
+
+const { title, width, offset } = Astro.props
+---
+
+<div class="window-frame">
+    <article class="window">
+        <h1>{title}</h1>
+        <main>
+            <slot />
+        </main>
+    </article>
+</div>
+
+<style define:vars={{width, offset}}>
+:host {
+    display: block;
+}
+
+.window-frame {
+    max-width: var(--width);
+    padding: var(--offset);
+    margin: 0;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.window {
+    border: 1px dashed currentColor;
+    border-radius: 0.5rem 0.5rem 0 0;
+    overflow: hidden;
+
+    font-family: "Syne Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+.window > h1 {
+    margin: 0;
+    padding: 0.5rem;
+    line-height: 1.4;
+    border-bottom: 1px dashed currentColor;
+    background: #eeeeee;
+    white-space: pre-wrap;
+
+    font-size: 1rem;
+}
+
+.window > main {
+    margin: 0;
+    padding: 1rem;
+
+    background: #ffffff;
+}
+
+</style>
